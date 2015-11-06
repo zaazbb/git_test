@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>WiFi配置</title>
+
+        <link href="wificfg_files/font-awesome.css" rel="stylesheet">
+        <link href="wificfg_files/bootstrap.css" rel="stylesheet">
+        <link href="wificfg_files/bootstrap-theme.css" rel="stylesheet">
+        <style>
+        body{background: #eaebec;}
+             .next{width:105px;margin:20px auto 0;height: 40px;font-size: 16px;}
+             .explain p{color:#babbbc;}
+             .huise{color:#babbbc;}
+             .codepage a.btn{width:145px;margin:0 auto;color:#fff;}
+             .codepage_pic{background: #fff;padding-bottom:5px;margin-bottom:22px;}
+             .codepage_pic p{height:11px;}
+             .codepage_pic p span{text-align: left;}
+             .concoct_qrcode {position: relative;height:420px;background: #fff;line-height: 44px;margin-top:2px;font-size: 16px; margin-bottom:10px;}
+             .concoct_name,.concoct_pass {position: relative;height:44px;background: #fff;line-height: 44px;margin-top:2px;font-size: 16px;}
+             .concoct_name label,.concoct_pass label{display: inline-block;width:110px;padding-left:10px;padding-right:2px;}
+             .concoct_name .netname,.concoct_pass .netpasspass{position: absolute;width:62%;display: inline-block;}
+              .concoct_name .netname input,.concoct_pass .netpasspass input{}
+             .clearfix:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
+             .cloth{clear: both;height: 0px;}
+            .concoct_settings {position: relative;height:44px;background: #fff;line-height: 44px;margin-top:2px;font-size: 16px;}
+            .concoct_settings label{display: inline-block;width:110px;padding-left:10px;padding-right:2px;}
+            .concoct_settings .netsettings{position: absolute;width:62%;display: inline-block;}
+             .codepage .concoct>div{padding-left:15px;}
+             .codepage .concoct>div a{color:#222;width:100%;display: inline-block;text-decoration: none;}
+             .codepage .concoct>div span{float:right;}
+             .netwifi form >div label{width:82px;}
+             .netwifi form.form-horizontal >div label~div,.ipwifi form.form-horizontal >div label~div{right:15px;width:69%;top:5px;}
+             .netwifi form >div label~div input,.ipwifi form >div label~div input{border:none;box-shadow: none;text-align: right;}
+             .netwifi form >div label~div input:focus{outline: none;}
+             .gaojibtn{height: 18px;color: transparent;background: #fff;position: absolute;top:13px;right:15px;}
+             .gaojibtn:focus{outline: none;}
+             .grey{border: 1px solid #ddd;}
+             .green{border: 1px solid #57c530;}
+             .gaojibtn span{display: inline-block;height: 18px;width: 28px;position: absolute;top:-1px;}
+             .bg-grey{border: 1px solid #ddd;background: #ddd;right:0px;}
+             .bg-green{border: 1px solid #57c530;background: #57c530;right:32px;}
+             .pic-cent{text-align:center;}
+             .pic-cent p{color:#c4c4c4;}
+             .picsize{width:135px;padding:20px 0 10px;}
+             .codepage .ipwifi >div{padding-left:0px;}
+             .codepage .ipwifi form>div label{width:82px;}
+             .ipwifi .concoct_settings .netsettings{position: absolute;right:15px;}
+             .mask-box{display:none;}
+             .mask-layer{width:100%;height:100%;background-color: #000;filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=70);filter: alpha(opacity=70);-moz-opacity: 0.7;-webkit-opacity: 0.7;opacity: 0.7;position: fixed;top: 0;left: 0;bottom:0;z-index:999;}
+             .mask-layer_box{width:86%;height:150px;
+                background:#fff;
+                position:fixed;
+                left:50%;top:50%;margin-left:-43%;
+                margin-top:-75px;z-index:1000;
+                -webkit-border-radius:5px;
+                -moz-border-radius:5px;
+                -ms-border-radius:5px;
+                -o-border-radius:5px;
+                border-radius:5px;
+            }
+            .mask-layer_box h3{text-align: center;margin:40px 0 25px;font-size: 18px;color:#a7a7a7;font-weight: normal;}
+
+            .subBtn {display:block; width:40%;height:40px; border:0;background:#ccc;-webkit-border-radius:5px;
+                -moz-border-radius:5px;
+                -ms-border-radius:5px;
+                -o-border-radius:5px;
+                border-radius:5px;height:38px;text-align: center;line-height:38px; font-size:1.1em;color:#fff;margin-bottom:10px;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);
+                margin:0 auto;
+            }
+            .subBtn:hover{-webkit-tap-highlight-color:rgba(0,0,0,0);outline:none;}
+            .span-r{margin-right: 15px;}
+        </style>
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="http://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+            <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <script src="wificfg_files/jquery.js"></script>
+        <script src="wificfg_files/bootstrap.js"></script>
+<script type="text/javascript" src="wificfg_files/jquery.qrcode.min.js"></script>
+        <script>
+    var qrcode;
+    window.onload =function(){
+        /*
+        qrcode = new QRCode(document.getElementById("qrcode"), {
+            width : 400,//设置宽高
+            height : 400
+        });
+       // qrcode.makeCode("");
+       */
+        //jQuery('#qrcode').qrcode({width:200,height:200,correctLevel:0,text:'123'});
+    }
+    
+    </script>
+
+    </head>
+    <body>
+        <div class="container ">
+<div class="row codepage">
+            <div class="concoct_qrcode">
+    <div id="qrcode" class="qrcode"></div>
+</div>
+
+        <div class="concoct netwifi">
+
+        <!--
+        <form class="form-horizontal" style="margin:20px 0;" action="/wx/wifiConfig" method="post">
+        -->
+            <div class="concoct_name ">
+                <label for="ssid">网络名称:</label>
+                <div class="netname iw">
+                    <input class="form-control" name="ssid" id="ssid" type="text">                </div>
+                <div class="cloth"></div>
+            </div>
+            
+            <div class="concoct_pass ">
+                <label for="password">网络密码:</label>
+                <div class="netpasspass">
+                    <input class="form-control" name="password" id="password" type="text">                </div>
+            </div>
+ 
+            <div class="concoct_pass ">
+                <label for="password">去除备用</label>
+                <div class="netpasspass">
+                    <input class="form-control" name="password" id="nostandby" type="checkbox"/>              
+            </div>
+            </div>
+
+            <div class="concoct_settings">
+                <label for="setting">高级设置</label>
+                <div class="netsettings">
+                    <button id="on_off" class="gaojibtn grey" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">已关闭<span class="bg-grey"></span></button>
+                </div>
+            </div>
+
+        <div class="collapse" id="collapseExample">
+            <div class="concoct_pass ">
+                <label for="ip_addr">IP地址:</label>
+                <div class="netpasspass">
+                    <input class="form-control" disabled="disabled" name="ip_addr" id="ip_addr" type="text">                </div>
+            </div>
+            <div class="concoct_pass ">
+                <label for="password">子网掩码:</label>
+                <div class="netpasspass">
+                    <input class="form-control" disabled="disabled" value="255.255.255.0" name="subnet_mask" id="subnet_mask" type="text">                </div>
+            </div>
+            <div class="concoct_pass ">
+                <label for="password">默认网关:</label>
+                <div class="netpasspass">
+                    <input class="form-control" disabled="disabled" name="default_gateway" id="default_gateway" type="text">                </div>
+            </div>
+        </div>
+        <!--
+            <button type="submit" class="btn btn-success btn-block next">下一步</button>
+
+        </form>
+        -->
+        <input type="button" vclass="btn btn-success btn-block next" value="下一步" id="createqr">
+    </div>
+
+    
+</div>
+</div>
+ <!-- 弹框 -->
+    <div class="mask-box">
+        <div class="mask-layer"></div>
+        <div class="mask-layer_box">
+            <h3>网络名称不能为空</h3>
+            <a class="subBtn" href="javascript:void(0)" style="text-decoration:none;color:#fff;">继续编辑</a>
+        </div>
+    </div>
+<script>
+
+    function checkIP(ip)
+    {
+        obj=ip;
+        var exp=/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
+        var reg = obj.match(exp);
+        if(reg==null)
+        {
+            return false;//不合法
+        }
+        else
+        {
+            return true; //合法
+        }
+    }
+
+    function checkMask(mask)
+    {
+        obj=mask;
+        var exp=/^(254|252|248|240|224|192|128|0)\.0\.0\.0|255\.(254|252|248|240|224|192|128|0)\.0\.0|255\.255\.(254|252|248|240|224|192|128|0)\.0|255\.255\.255\.(254|252|248|240|224|192|128|0)$/;
+        var reg = obj.match(exp);
+        if(reg==null)
+        {
+            return false; //"非法"
+        }
+        else
+        {
+            return true; //"合法"
+        }
+    }
+
+    $('.collapse').on('show.bs.collapse', function () {
+            //$('#on_off').html('已开启');
+            $('#on_off span').toggleClass('bg-green');
+            $('#on_off span').toggleClass('bg-grey');
+            $('#on_off').toggleClass('grey');
+            $('#on_off').toggleClass('green');
+            $('#ip_addr').attr('disabled',false);
+            $('#subnet_mask').attr('disabled',false);
+            $('#default_gateway').attr('disabled',false);
+        });
+
+        $('.collapse').on('hide.bs.collapse', function () {
+            //$('#on_off').html('已关闭');
+        });
+
+        $('.collapse').on('hidden.bs.collapse', function () {
+           // $('#on_off').html('已关闭');
+            $('#on_off span').toggleClass('bg-green');
+            $('#on_off span').toggleClass('bg-grey');
+            $('#on_off').toggleClass('grey');
+            $('#on_off').toggleClass('green');
+            $('#ip_addr').attr('disabled',true);
+            $('#subnet_mask').attr('disabled',true);
+            $('#default_gateway').attr('disabled',true);
+        });
+        $('.subBtn').on('click',function(){
+            $('.mask-box').hide();
+        })
+
+    function checkinput() {
+            var ssid = $('#ssid').val();
+            if($.trim(ssid)==''){
+                $('.mask-box h3').html('网络名称不能为空');
+                $('.mask-box').show();
+                //alert('网络名称不能为空');
+                return false;
+            }
+            var password = $('#password').val();
+            if($.trim(password) && $.trim(password).length < 8){
+                $('.mask-box h3').html('网络密码不得少于8个字符');
+                $('.mask-box').show();
+                return false;
+            }
+
+            //var words = $('#on_off').text();
+           /* if(words=='已开启'){*/
+            if($('#on_off').hasClass('green')){
+                var ip_addr = $('#ip_addr').val();
+                var subnet_mask = $('#subnet_mask').val();
+                var default_gateway = $('#default_gateway').val();
+                if($.trim(ip_addr)=='' || $.trim(default_gateway)==''){
+                    //alert('请将配置信息填写完全');
+                    $('.mask-box h3').html('请将配置信息填写完全');
+                    $('.mask-box').show();
+                    return false;
+                }
+
+                if(!checkIP(ip_addr)){
+                    $('.mask-box h3').html('IP格式错误');
+                    $('.mask-box').show();
+                    return false;
+                }
+
+                if(!checkMask(subnet_mask)){
+                    $('.mask-box h3').html('子网掩码格式错误');
+                    $('.mask-box').show();
+                    return false;
+                }
+
+                if(!checkIP(default_gateway)){
+                    $('.mask-box h3').html('默认网关格式错误');
+                    $('.mask-box').show();
+                    return false;
+                }
+            }
+
+            return true;
+        } 
+
+
+        document.getElementById("createqr").onclick =function(){
+/*
+var str = "1234"
+var v1= ""
+　　　　for(var i = 0; i < str.length; i++){
+
+　　　　　　　　v1 += str.charCodeAt(i).toString(16);
+}
+alert(v1);
+*/
+var nostandby = "0"
+if(document.getElementById("nostandby").checked==true)nostandby="1";
+var s = "{"
+    +'"ssid":"'+$('#ssid').val()+'"'
+    +',"password":"'+$('#password').val()+'"'
+    +',"nosb":"'+nostandby+'"'
+    +',"ip_addr":"'+$('#ip_addr').val()+'"'
+    +',"subnet_mask":"'+$('#subnet_mask').val()+'"'
+    +',"default_gateway":"'+$('#default_gateway').val()+'"'
+    +"}"
+alert(s);
+var val="";
+for(var i = 0; i < s.length; i++){
+　　val += s.charCodeAt(i).toString(16);
+};
+console.log(val);
+//qrcode.makeCode(val);
+document.getElementById('qrcode').innerHTML = "";
+        jQuery('#qrcode').qrcode({width:400,height:400,text:val});
+
+
+
+//if (checkinput()) qrcode.makeCode(document.getElementById("ssid").value);
+}
+
+</script>
+</body></html>
