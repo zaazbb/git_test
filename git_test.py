@@ -13,6 +13,6 @@ log = s.decode('gbk').replace('\r', '')
 os.environ['PATH'] += ';' + git_path
 run('git add -A', shell=True)
 print("git commit -m '%s'" % log)
-run("git commit -m '\n%s'" % log, shell=True)
+run("git commit -m \n%s" % log, shell=True)
 run('git push', shell=True)
 
