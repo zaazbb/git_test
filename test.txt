@@ -4,3 +4,4 @@ xxx
 new branch
 
 test amend commit
+test amend commit1
